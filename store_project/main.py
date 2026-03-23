@@ -21,3 +21,4 @@ def get_shipment_by_id(id: int) -> dict[str, Any]:
         return {"error": "Shipment not found"}  
     
     return shipments[id]
+
