@@ -14,5 +14,6 @@ cursor.execute("INSERT INTO products VALUES (16, 'Bread', 'Grocery', 56, 90, '00
 #get results 
 cursor.execute("SELECT * FROM products")
 results = cursor.fetchall()
+connection.commit()
 print(results)
 

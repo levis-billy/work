@@ -17,5 +17,6 @@ cursor.execute("INSERT INTO sales VALUES('900', '30 JAN 2024','800', '2006', 200
 cursor.execute("INSERT INTO sales VALUES ('300', '14 FEB 2026', '400', '2011', 1200, 'Cash')")
 cursor.execute("SELECT * FROM sales")
 results = cursor.fetchall()
+connection.commit()
 print(results)
 

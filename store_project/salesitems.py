@@ -12,7 +12,7 @@ FOREIGN KEY (product_id) REFERENCES  products(product_id)
 )"""
 cursor.execute(command5)
 cursor.execute("INSERT INTO salesitems VALUES('900', '900', 14, 400)")
-
+connection.commit()
 results = cursor.fetchall()
 
 

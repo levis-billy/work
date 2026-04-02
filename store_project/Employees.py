@@ -15,5 +15,6 @@ cursor.execute("INSERT INTO employees VALUES ('800', 'Henry', 'Onyango', 'Cashie
 cursor.execute("INSERT INTO employees VALUES ('900', 'Ruth', 'Ajwang', 'Manager', 30000, '24 Feb 2026')")
 cursor.execute("SELECT * FROM employees")
 results = cursor.fetchall()
+connection.commit()
 print(results)
 
