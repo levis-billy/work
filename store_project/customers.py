@@ -14,7 +14,6 @@ cursor.execute("INSERT INTO customer VALUES ('2011', 'Bravin', 'Otieno', '071574
 cursor.execute("INSERT INTO customer VALUES ('2001', 'Sally', 'Atieno','0790909090', 48)")
 cursor.execute("SELECT * FROM customer")
 results = cursor.fetchall()
-connection.commit()
 print(results)
 
 
