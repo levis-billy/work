@@ -1,4 +1,4 @@
-from unicodedata import category
+
 
 from fastapi import FastAPI
 from scalar_fastapi import get_scalar_api_reference
@@ -8,8 +8,10 @@ from crud.products_crud import (get_all_products, get_product_by_id, add_product
 from crud.sales_items_crud import get_all_sales_items, sales_items_by_id, add_sales_item
 from crud.employees_crud import get_all_employees, get_employee_by_id, add_employee
 from crud.cart_crud import get_all_cart_items, add_cart_item
-from customers_crud import get_all_customers, get_customer_by_id, add_customer
+from crud.users_crud import create_user, get_user_by_username
+from crud.customer_crud import get_all_customers, get_customer_by_id, add_customer
 from schema import ProductCreate, SalesItemsCreate, EmployeeCreate,CartItemCreate, CustomerCreate
+from auth import hash_password, verify_password
 app = FastAPI()
 
 @app.get("/scalar")
@@ -61,5 +63,32 @@ def get_customers():
 @app.get("/customers/{customer_id}")
 def read_customer(customer_id: str):    
     return get_customer_by_id(customer_id)
-@app.post("/customers")def create_customer(customer: CustomerCreate):
+@app.post("/customers")
+def create_customer(customer: CustomerCreate):
     return add_customer(customer)
+
+@app.post("/register")
+def register(user: UserCreate):
+
+    hashed_password = hash_password(user.password)
+
+    create_user(
+        user.username,
+        user.email,
+        hashed_password
+    )
+
+    return {"message": "User created"}
+
+@app.post("/login")
+def login(user: UserLogin):
+
+    db_user = get_user_by_username(user.username)
+
+    if not db_user:
+        return {"error": "User not found"}
+
+    if not verify_password(user.password, db_user[3]):
+        return {"error": "Invalid password"}
+
+    return {"message": "Login successful"}

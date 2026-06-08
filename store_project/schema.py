@@ -25,8 +25,8 @@ class CartItemCreate(BaseModel):
     quantity: int   
 
 class CustomerCreate(BaseModel):
-    Customer_id: str
-    First_name: str
-    Last_Name: str
+    customer_id: str
+    first_name: str
+    last_name: str
     phone: str
     loyalty_points: int
